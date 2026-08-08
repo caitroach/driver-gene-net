@@ -1,4 +1,4 @@
-# do driver genes cluster in the protein interaction network?
+# Do known cancer driver genes sit closer together in the human protein interaction network than you'd expect by chance? Does that survive controlling for degree?
 ## background
 Cancer is the result of cells growing uncontrollably because their DNA has been damaged. When tumour DNA is sequenced and compared to pt's healthy tissue, researchers find somatic mutations, which are changes in human DNA that occur after conception and cannot be passed down to children. There are two types of somatic mutations: driver mutations and passenger mutations. 
 
