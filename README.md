@@ -18,12 +18,18 @@ Cancer doesn't need to destroy a specific gene. It only needs to break the pathw
 
 This can be modeled as a graph analysis problem, where nodes represent genes, edges represent interactions between proteins, and node signals represent how often the gene is mutated across the cohort. 
 
-## research  
+## methods
 Every network-based method in cancer genomics relies on the assumption that driver genes sit close together in the protein interaction network, because cancer works by breaking pathways rather than individual genes. The edges in an interaction network are records of experiments we chose to run on specifically selected cancer genes, so drivers may cluster in the network partly due to bias.
 
 Methods like [HotNet2](https://github.com/raphael-group/hotnet2) spread mutation signals across the graph because they assume this is true. 
 
-Is it? And if drivers do cluster, is that due to biology, or is it the result of drivers being the most-studied genes in the genome?
+This project asks one simple question: do the drivers for a given cancer work together, or does each one break something independently? To answer it, I used a map of which proteins physically contact each other inside human cells, marked the 49 known drivers of ovarian epithelial tumours on that map, and counted how often two drivers were directly linked. 
 
 ## results
 <img width="1549" height="607" alt="image" src="https://github.com/user-attachments/assets/a897281a-7bca-484f-9d36-91b916377d06" />
+_Terminal results_
+<img width="2779" height="2376" alt="image" src="https://github.com/user-attachments/assets/baeaee8b-9bfb-46c0-a69f-fd2c41807ac1" />
+_Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact._
+Larger circles have more interaction partners overall. Most drivers (33 of 49) form one connected group, suggesting they act on shared machinery rather than independently. The 16 below the line have no direct link to any other driver. 
+
+The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to be well-connected due to the research emphasis on them. 
