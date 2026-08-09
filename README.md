@@ -27,13 +27,13 @@ This project asks one simple question: do the drivers for a given cancer work to
 
 ## results
 <img width="1549" height="607" alt="image" src="https://github.com/user-attachments/assets/a897281a-7bca-484f-9d36-91b916377d06" />
-*Terminal results*
 <img width="2779" height="2376" alt="image" src="https://github.com/user-attachments/assets/baeaee8b-9bfb-46c0-a69f-fd2c41807ac1" />
-*Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact.*
+(Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact.)
+
 Larger circles have more interaction partners overall. Most drivers (33 of 49) form one connected group, suggesting they act on shared machinery rather than independently. The 16 below the line have no direct link to any other driver. 
 
 The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to be well-connected due to the research emphasis on them. 
 
-## bibliography 
+## data 
 human protein-protein interaction network data via the [Swiss Institute of Bioinformatics] (https://string-db.org/)  
 ovarian cancer driver data via [IntOGen](https://www.intogen.org/search?cancer=OVT)
