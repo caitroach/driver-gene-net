@@ -1,4 +1,9 @@
-# Do known cancer driver genes sit closer together in the human protein interaction network than you'd expect by chance? Does that survive controlling for degree?
+# are known ovarian cancer driver genes more densely interconnected than expected by chance?
+Yes. Strongly. Even after controlling for network degree. 
+Among 49 ovarian epithelial tumour driver genes present in the PPI network, I observed 49 driver-driver interactions. Degree-matched random gene sets contained 5.7 ± 2.0 interactions on average across 1,000 permutations (empirical p ≈ 0.001).
+<img width="2779" height="2376" alt="image" src="https://github.com/user-attachments/assets/baeaee8b-9bfb-46c0-a69f-fd2c41807ac1" />
+(Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact.)
+Larger circles have more interaction partners overall. Most drivers (33 of 49) form one connected group, suggesting they act on shared machinery rather than independently. The 16 below the line have no direct link to any other driver. 
 ## background
 Cancer is the result of cells growing uncontrollably because their DNA has been damaged. When tumour DNA is sequenced and compared to pt's healthy tissue, researchers find somatic mutations, which are changes in human DNA that occur after conception and cannot be passed down to children. There are two types of somatic mutations: driver mutations and passenger mutations. 
 
@@ -25,12 +30,11 @@ Methods like [HotNet2](https://github.com/raphael-group/hotnet2) spread mutation
 
 This project asks one simple question: do the drivers for a given cancer work together, or does each one break something independently? To answer it, I used a map of which proteins physically contact each other inside human cells, marked the 49 known drivers of ovarian epithelial tumours on that map, and counted how often two drivers were directly linked. 
 
+Highly connected proteins are more likely to have interactions with one another simply because they have many interaction partners. To distinguish genuine driver clustering from this hub effect, I generated random gene sets with degree distributions matched to the observed driver set.
+
 ## results
 <img width="1549" height="607" alt="image" src="https://github.com/user-attachments/assets/a897281a-7bca-484f-9d36-91b916377d06" />
-<img width="2779" height="2376" alt="image" src="https://github.com/user-attachments/assets/baeaee8b-9bfb-46c0-a69f-fd2c41807ac1" />
-(Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact.)
-
-Larger circles have more interaction partners overall. Most drivers (33 of 49) form one connected group, suggesting they act on shared machinery rather than independently. The 16 below the line have no direct link to any other driver. 
+The observed driver set contained 49 driver-driver edges, compared with 5.7 ± 2.0 in degree-matched random sets (1,000 permutations; p = 0.001).
 
 The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to be well-connected due to the research emphasis on them. 
 
