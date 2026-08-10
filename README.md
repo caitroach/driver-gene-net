@@ -24,9 +24,7 @@ Cancer doesn't need to destroy a specific gene. It only needs to break the pathw
 This can be modeled as a graph analysis problem, where nodes represent genes, edges represent interactions between proteins, and node signals represent how often the gene is mutated across the cohort. 
 
 ## methods
-Every network-based method in cancer genomics relies on the assumption that driver genes sit close together in the protein interaction network, because cancer works by breaking pathways rather than individual genes. The edges in an interaction network are records of experiments we chose to run on specifically selected cancer genes, so drivers may cluster in the network partly due to bias.
-
-Methods like [HotNet2](https://github.com/raphael-group/hotnet2) spread mutation signals across the graph because they assume this is true. 
+Every network-based method in cancer genomics relies on the assumption that driver genes sit close together in the protein interaction network. The edges in an interaction network are records of experiments we chose to run on specifically selected cancer genes, so drivers may cluster in the network partly due to bias. Methods like [HotNet2](https://github.com/raphael-group/hotnet2) spread mutation signals across the graph because they assume this is true. 
 
 This project asks one simple question: do the drivers for a given cancer work together, or does each one break something independently? To answer it, I used a map of which proteins physically contact each other inside human cells, marked the 49 known drivers of ovarian epithelial tumours on that map, and counted how often two drivers were directly linked. 
 
