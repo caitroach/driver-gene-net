@@ -1,5 +1,5 @@
 # are known ovarian cancer driver genes more densely interconnected than expected by chance?
-Yes. Strongly. Even after controlling for network degree. 
+(Yes! Even after controlling for network degree!!)
 Among 49 ovarian epithelial tumour driver genes present in the PPI network, I observed 49 driver-driver interactions. Degree-matched random gene sets contained 12.6 ± 3.4 interactions on average across 1,000 permutations (empirical p ≤ 0.001).
 <img width="2779" height="2376" alt="image" src="https://github.com/user-attachments/assets/baeaee8b-9bfb-46c0-a69f-fd2c41807ac1" />
 (Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact.)
@@ -35,7 +35,7 @@ This project asks one simple question: do the drivers for a given cancer work to
 Finally, `draw_network.py` uses matplotlib and networkx to draw the figure.
 
 ## results
-<img width="1549" height="607" alt="image" src="https://github.com/user-attachments/assets/a897281a-7bca-484f-9d36-91b916377d06" />
+<img width="2704" height="958" alt="image" src="https://github.com/user-attachments/assets/24dd66a5-c91f-4ab1-bf2c-96ef90df3c3e" />
 The observed driver set contained 49 driver-driver edges, compared with 12.6 ± 3.4 in degree-matched random sets (about 3.9x more; 1,000 permutations; p ≤ 0.001). The largest connected group of drivers was also far bigger than chance: 33 of 49, vs 5.7 ± 2.0 in degree-matched sets.
 
 The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to have more interaction partners than average. 
