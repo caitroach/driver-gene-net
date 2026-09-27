@@ -158,8 +158,11 @@ def main():
         null_matched_lcc.append(l)
 
     print(f"\nedges in induced subgraph (observed={obs_edges}):")
-    summarize("vs uniform", obs_lcc, null_uniform_lcc)
-    summarize("vs degree-matched", obs_lcc, null_matched_lcc)
+    summarize("edges vs uniform", obs_edges, null_uniform_edges)
+    summarize("edges vs degree-matched", obs_edges, null_matched_edges)
+    summarize("LCC vs uniform", obs_lcc, null_uniform_lcc)
+    summarize("LCC vs degree-matched", obs_lcc, null_matched_lcc)
+
 
     print("""
     interpreting this: 
