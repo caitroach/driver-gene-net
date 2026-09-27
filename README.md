@@ -1,13 +1,13 @@
 # are known ovarian cancer driver genes more densely interconnected than expected by chance?
 Yes. Strongly. Even after controlling for network degree. 
-Among 49 ovarian epithelial tumour driver genes present in the PPI network, I observed 49 driver-driver interactions. Degree-matched random gene sets contained 5.7 ± 2.0 interactions on average across 1,000 permutations (empirical p ≈ 0.001).
+Among 49 ovarian epithelial tumour driver genes present in the PPI network, I observed 49 driver-driver interactions. Degree-matched random gene sets contained 12.6 ± 3.4 interactions on average across 1,000 permutations (empirical p ≤ 0.001).
 <img width="2779" height="2376" alt="image" src="https://github.com/user-attachments/assets/baeaee8b-9bfb-46c0-a69f-fd2c41807ac1" />
 (Each circle is a driver gene for ovarian cancer; a line means the two proteins physically interact.)
 Larger circles have more interaction partners overall. Most drivers (33 of 49) form one connected group, suggesting they act on shared machinery rather than independently. The 16 below the line have no direct link to any other driver. 
 ## background
-Cancer is the result of cells growing uncontrollably because their DNA has been damaged. When tumour DNA is sequenced and compared to pt's healthy tissue, researchers find somatic mutations, which are changes in human DNA that occur after conception and cannot be passed down to children. There are two types of somatic mutations: driver mutations and passenger mutations. 
+Cancer is the result of cells growing uncontrollably because their DNA has been damaged. When tumour DNA is sequenced and compared to pt's healthy tissue, researchers find somatic mutations, which are changes in human DNA that occur after conception and cannot be passed down to children (think of cancer caused by smoking, sunburns, etc.). There are two types of somatic mutations: driver mutations and passenger mutations. 
 
-Passenger mutations are random damage that happened to occur as a result of the rapid growth. They don't contribute to tumour growth; in fact, [a 2017 study](https://pmc.ncbi.nlm.nih.gov/articles/PMC5639691/) found that a sufficiently increased number of passenger mutations can actually slow tumour growth. 
+Passenger mutations are random damage that happened to occur as a result of the rapid growth. They don't contribute to tumour growth; in fact, [a 2017 study](https://pmc.ncbi.nlm.nih.gov/articles/PMC5639691/) found that a sufficiently increased number of passenger mutations can actually slow it. 
 
 Driver mutations cause cells to become cancerous and multiply, actively accelerating tumour growth. Identifying individual driver mutations allows doctors to precisely target and treat specific cancers, but remains challenging due to the massive diversity of the many different mutated cells that make up cancer tumours. 
 
@@ -24,18 +24,22 @@ Cancer doesn't need to destroy a specific gene. It only needs to break the pathw
 This can be modeled as a graph analysis problem, where nodes represent genes, edges represent interactions between proteins, and node signals represent how often the gene is mutated across the cohort. 
 
 ## methods
-Every network-based method in cancer genomics relies on the assumption that driver genes sit close together in the protein interaction network. The edges in an interaction network are records of experiments we chose to run on specifically selected cancer genes, so drivers may cluster in the network partly due to bias. Methods like [HotNet2](https://github.com/raphael-group/hotnet2) spread mutation signals across the graph because they assume this is true. 
+Every network-based method in cancer genomics relies on the assumption that driver genes sit close together in the protein interaction network. The edges in an interaction network are records of experiments we chose to run on specifically selected cancer genes, so drivers could potentially cluster in the network partly due to bias! Methods like [HotNet2](https://github.com/raphael-group/hotnet2) spread mutation signals across the graph because they assume this is true. 
 
-This project asks one simple question: do the drivers for a given cancer work together, or does each one break something independently? To answer it, I used a map of which proteins physically contact each other inside human cells, marked the 49 known drivers of ovarian epithelial tumours on that map, and counted how often two drivers were directly linked. 
+This project asks one simple question: do the drivers for a given cancer work together, or does each one break something independently? To answer it, I worked in three steps.
 
-Highly connected proteins are more likely to have interactions with one another simply because they have many interaction partners. To distinguish genuine driver clustering from this hub effect, I generated random gene sets with degree distributions matched to the observed driver set.
+`build_network.py` starts by downloading human protein interaction data from STRING, keeps only the confident physical interactions, converts protein IDs to gene names, and saves the biggest connected chunk as a tsv.
+
+`driver_clustering.py` marks the 49 drivers on the map and counts how many links there are between drivers. Highly connected proteins are more likely to have interactions with one another simply because they have many interaction partners. To distinguish genuine clustering from this effect, this script makes 1,000 fake driver sets and counts their links too. There were two types of fake sets: uniform (totally random) and degree-matched (random but just as popular as real drivers).
+
+Finally, `draw_network.py` uses matplotlib and networkx to draw the figure.
 
 ## results
 <img width="1549" height="607" alt="image" src="https://github.com/user-attachments/assets/a897281a-7bca-484f-9d36-91b916377d06" />
-The observed driver set contained 49 driver-driver edges, compared with 5.7 ± 2.0 in degree-matched random sets (1,000 permutations; p = 0.001).
+The observed driver set contained 49 driver-driver edges, compared with 12.6 ± 3.4 in degree-matched random sets (about 3.9x more; 1,000 permutations; p ≤ 0.001). The largest connected group of drivers was also far bigger than chance: 33 of 49, vs 5.7 ± 2.0 in degree-matched sets.
 
-The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to be well-connected due to the research emphasis on them. 
+The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to have more interaction partners than average. 
 
 ## data 
-human protein-protein interaction network data via the [Swiss Institute of Bioinformatics] (https://string-db.org/)  
+human protein-protein interaction network data via the [Swiss Institute of Bioinformatics](https://string-db.org/)
 ovarian cancer driver data via [IntOGen](https://www.intogen.org/search?cancer=OVT)
