@@ -38,7 +38,7 @@ Finally, `draw_network.py` uses matplotlib and networkx to draw the figure.
 <img width="2704" height="958" alt="image" src="https://github.com/user-attachments/assets/24dd66a5-c91f-4ab1-bf2c-96ef90df3c3e" />
 The observed driver set contained 49 driver-driver edges, compared with 12.6 ± 3.4 in degree-matched random sets (about 3.9x more; 1,000 permutations; p ≤ 0.001). The largest connected group of drivers was also far bigger than chance: 33 of 49, vs 5.7 ± 2.0 in degree-matched sets.
 
-<img width="2000" height="1120" alt="image" src="https://github.com/user-attachments/assets/d633d0ad-f0c3-474c-869a-8e924c3d4acb" />
+<img width="2000" height="1120" alt="image" src="https://github.com/user-attachments/assets/0f9ac6f6-a71b-44d5-990c-01cbe55b8a3e" />
 
 
 The answer: driver genes cluster far more than chance allows. Most OVT drivers form a single connected group, and the effect holds up even after correcting for the fact that drivers tend to have more interaction partners than average. 
